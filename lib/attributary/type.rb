@@ -8,11 +8,11 @@ module Attributary
   end
 end
 
-require_relative 'types/array_type'
-require_relative 'types/big_decimal_type'
-require_relative 'types/boolean_type'
-require_relative 'types/float_type'
-require_relative 'types/hash_type'
-require_relative 'types/integer_type'
-require_relative 'types/string_type'
-require_relative 'types/symbol_type'
+require 'types/array_type'
+require 'types/big_decimal_type'
+require 'types/boolean_type'
+require 'types/float_type'
+require 'types/hash_type'
+require 'types/integer_type'
+require 'types/string_type'
+require 'types/symbol_type'

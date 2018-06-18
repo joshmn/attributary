@@ -1,9 +1,9 @@
-require_relative 'attributary/config'
-require_relative 'attributary/core_ext'
-require_relative 'attributary/type'
-require_relative 'attributary/initializer'
-require_relative 'attributary/dsl'
-require_relative 'attributary/version'
+require 'attributary/config'
+require 'attributary/core_ext'
+require 'attributary/type'
+require 'attributary/initializer'
+require 'attributary/dsl'
+require 'attributary/version'
 
 module Attributary
 end

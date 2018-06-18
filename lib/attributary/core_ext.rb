@@ -7,7 +7,9 @@ class String
 
   unless String.respond_to?(:safe_constantize)
     def safe_constantize
-      constantize rescue nil
+      constantize
+    rescue StandardError
+      nil
     end
   end
 end

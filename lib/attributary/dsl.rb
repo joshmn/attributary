@@ -37,7 +37,7 @@ module Attributary
         end
         if type == :boolean
           define_method("#{name}?") do
-            send("#{name}")
+            send(name.to_s)
           end
         end
       end
@@ -59,18 +59,16 @@ module Attributary
 
       def _attributary_validate_attribute(value, validator)
         return true if validator.nil?
-        unless validator.call(value)
-          raise ValidationError, "Validator failed."
-        end
+        raise ValidationError, 'Validator failed.' unless validator.call(value)
       end
 
       def _attributary_cast_to(type, value)
-        cast_klass = self._attributary_cast_class(type)
+        cast_klass = _attributary_cast_class(type)
         cast_klass.cast_to(value)
       end
 
       def _attributary_cast_class(type)
-        cast_klass_name = self._attributary_cast_class_name(type)
+        cast_klass_name = _attributary_cast_class_name(type)
         cast_klass = cast_klass_name.safe_constantize
         if cast_klass.nil?
           raise NameError, "#{cast_klass_name} is not a valid type."
@@ -87,4 +85,3 @@ module Attributary
     end
   end
 end
-

@@ -1,5 +1,4 @@
 module Attributary
-
   def self.configuration
     @configuration || Config.new
   end
@@ -24,6 +23,5 @@ module Attributary
     def strict_mode?
       @strict_mode
     end
-
   end
 end

@@ -7,7 +7,7 @@ end
 class Character
   include Attributary::DSL
 
-  attribute :gender, :symbol, default: :male, validates: proc { |value| [:male, :female].include?(value) }
+  attribute :gender, :symbol, default: :male, validates: proc { |value| %i[male female].include?(value) }
 end
 
 c = Character.new

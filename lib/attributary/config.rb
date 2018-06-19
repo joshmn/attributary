@@ -13,11 +13,17 @@ module Attributary
   end
 
   class Config
-    attr_accessor :dsl_name, :strict_mode
-
+    attr_accessor :validation_error, :collection_error, :strict_mode, :dsl_name, :raise_errors
     def initialize
-      @dsl_name = :attribute
+      @validation_error = ::Attributary::ValidationError
+      @collection_error = ::Attributary::CollectionValidationError
       @strict_mode = false
+      @dsl_name = :attribute
+      @raise_errors = false
+    end
+
+    def raise_errors?
+      @raise_errors
     end
 
     def strict_mode?

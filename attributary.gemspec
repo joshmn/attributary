@@ -18,7 +18,10 @@ Gem::Specification.new do |spec|
   spec.bindir        = 'exe'
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
+  spec.files += Dir['lib/**/*.rb']
 
   spec.add_development_dependency 'bundler', '~> 1.15'
   spec.add_development_dependency 'rake', '~> 10.0'
+  spec.add_development_dependency 'pry', '~> 0.11.3'
+  spec.add_development_dependency 'rspec', '~> 3.0'
 end

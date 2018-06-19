@@ -25,6 +25,16 @@ Or install it yourself as:
     Attributary.configure do |c|
       c.dsl_name = :donkey # defaults to :attrubute
       c.strict_mode = false # set this to `true` to skip casting in the writer method (raises TypeError)
+      c.raise_errors = false # set this to true to raise errors when collection/validation fails
+    end
+    
+You can also set this on an object-by-object basis.
+    
+    class Character 
+      include Attributary::DSL
+      attributary do |c|
+        c.raise_errors = true 
+      end
     end
     
 ### Actually using it
@@ -60,6 +70,10 @@ Have to initialize other stuff? Send a hash to attributary_initialize
       include Attributary::Initializer
       include Attributary::DSL
       
+      attributary do |c|
+        c.raise_errors = true 
+      end
+            
       donkey :gender, :symbol, default: :male 
       
       def initialize(name, attributary_attributes = {})
@@ -82,6 +96,10 @@ Simply pass an array of the possible options for the attribute.
     class Character
       include Attributary::DSL
       
+      attributary do |c|
+        c.raise_errors = true 
+      end
+            
       donkey :gender, :symbol, default: :male, collection: [:male, :female]
     end
     
@@ -99,6 +117,10 @@ Pass a proc or a method name.
     class Character
       include Attributary::DSL
       
+      attributary do |c|
+        c.raise_errors = true 
+      end
+      
       donkey :gender, :symbol, default: :male, validates: proc { |value| [:male, :female].include?(value) }
     end
     
@@ -107,7 +129,6 @@ Pass a proc or a method name.
     character.gender = :left # raises CollectionValidationError
     character.gender = 'female' # gets casted correctly, and doesn't raise an error
     
-
 ### Types
 
 Supports some really naive typecasting. [See the supported types](https://github.com/joshmn/attributary/tree/master/lib/attributary/types). Create your own by inheriting from `Attributary::Types` and naming it like `ClassNameType`
@@ -121,6 +142,22 @@ Supports some really naive typecasting. [See the supported types](https://github
         end
       end
     end
+
+## Error handling
+
+If the configuration `raise_errors` is false, the object will have their accessible errors on the `attributary_errors` instance method, which is a hash of `{attribute_name: error object}`
+
+    class Character
+      include Attributary::DSL
+      
+      donkey :gender, :symbol, default: :male, :collection => [:male, :female]
+    end
+    
+    character = Character.new 
+    character.attributary_errors # {}
+    character.gender = :left # raises CollectionValidationError
+    character.gender = 'female' # gets casted correctly, and doesn't raise an error
+    
 
 ## Contributing
 

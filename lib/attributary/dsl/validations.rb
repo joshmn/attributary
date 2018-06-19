@@ -18,8 +18,9 @@ module Attributary
       def _attributary_check_collection(attribute, value, collection)
         unless collection.include?(value)
           _attributary_handle_error(attribute, value, :collection, :message => "Attribute #{attribute} `#{value}' is not in the collection #{collection}")
-          false
+          return false
         end
+        true
       end
 
       def _attributary_validate_attribute(attribute, value, validator)
@@ -28,6 +29,7 @@ module Attributary
           _attributary_handle_error(attribute, value, :validation)
           false
         end
+        true
       end
 
       def _add_attributary_error(name, klass, message)

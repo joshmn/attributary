@@ -18,9 +18,13 @@ module Attributary
           if options[:validate].is_a?(Symbol)
             unless send(options[:validate])
               self.class._attributary_handle_error(name, value, :validation)
+              write = false
             end
           end
-          instance_variable_set(:"@#{name}", value) if write
+          if write
+            instance_variable_set(:"@#{name}", value)
+            self.class._attributary_errors.delete(name)
+          end
         end
       end
 

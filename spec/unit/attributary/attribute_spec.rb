@@ -28,7 +28,7 @@ RSpec.describe Attributary do
 
   context 'casting' do
     it "casts the default" do
-      expect(klass.age.class).to eq(Integer)
+      expect(klass.age.class).to eq(Fixnum)
     end
 
     it 'casts an incorrect type to the correct type' do
@@ -48,7 +48,7 @@ RSpec.describe Attributary do
     it 'does not cast' do
       expect(klass.favorite_color).to eq(nil)
       klass.favorite_color = :green
-      expect(klass.favorite_color).to eq(nil)
+      expect(klass.favorite_color).to eq('green')
     end
   end
 
@@ -89,6 +89,8 @@ RSpec.describe Attributary do
       klass.type = 'sugar'
       expect(klass.type).to eq("vegetable")
       expect(klass.attributary_errors.size).to eq(1)
+      klass.type = 'fruit'
+      expect(klass.attributary_errors.size).to eq(0)
     end
   end
 

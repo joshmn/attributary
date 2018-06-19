@@ -3,7 +3,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'attributary/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'Attributary'
+  spec.name          = 'attributary'
   spec.version       = Attributary::VERSION
   spec.authors       = ['Josh Brody']
   spec.email         = ['josh@josh.mn']

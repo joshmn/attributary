@@ -155,7 +155,8 @@ If the configuration `raise_errors` is false, the object will have their accessi
     
     character = Character.new 
     character.attributary_errors # {}
-    character.gender = :left # raises CollectionValidationError
+    character.gender = :left # raises CollectionValidationError if raise_errors is true 
+    puts character.attributary_errors.size # 1 
     character.gender = 'female' # gets casted correctly, and doesn't raise an error
     
 

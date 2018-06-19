@@ -7,6 +7,7 @@ Gem::Specification.new do |spec|
   spec.version       = Attributary::VERSION
   spec.authors       = ['Josh Brody']
   spec.email         = ['josh@josh.mn']
+  spec.licenses      = ['MIT']
 
   spec.summary       = 'Like ActiveModel::Attributes but less fluffy and more attribute-y.'
   spec.description   = 'Like `ActiveModel::Attributes` but less fluffy and more attribute-y.'
